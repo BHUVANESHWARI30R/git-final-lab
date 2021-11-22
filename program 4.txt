@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *prev;
+    struct node *next;
+}*head,*tail,*temp,*t;
+void create();
+void insert_beg();
+void display();
+int main()
+{
+    
+    create();
+    display();
+    insert_mid();
+    display();
+    return 0;
+}
+void create()
+{
+    int n;
+    printf("enter the number of nodes ");
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        printf("enter the data at node %d\n",i);
+        scanf("%d",&temp->data);
+        temp->next=NULL;
+        if(head==NULL)
+        {
+            head=tail=temp;
+        }
+        else
+        {
+            tail->next=temp;
+            tail=temp;
+        }
+    }
+    }
+void display()
+{
+    int i=1;
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d",i,temp->data);
+        temp=temp->next;
+        i++;
+    }
+}
+void insert_mid()
+{
+    int aftrdata;
+    printf("enter after which data you wanna insert");
+    scanf("%d",&aftrdata);
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("enter the data to be inserted at middle");
+    scanf("%d",&temp->data);
+    temp->prev=NULL;
+    temp->next=NULL;
+   
+     t=head;
+     while(t->data!=aftrdata)
+     {
+         t=t->next;
+     }
+       temp->next=t->next;
+       temp->prev=t;
+       t->next->prev=temp;
+       t->next=temp;
+    
+}
+
+
+// output 
+enter the number of nodes 2
+enter the data at node 1
+1
+enter the data at node 2
+2
+12enter after which data you wanna insert3
+enter the data to be inserted at middle4
+
+
+
+
+
+
+
+
