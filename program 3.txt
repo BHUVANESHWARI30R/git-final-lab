@@ -1,0 +1,114 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*front,*rear,*temp;
+void enqueue();
+void dequeue();
+int main()
+{
+    int choice;
+    printf("--ENQUEUE AND DEQUEUE--");
+    while(1)
+    {
+        printf("\nEnter\n\t1.Enqueue\n\t2.Dequeue\n\t3.Exit\n");
+        printf("Enter the option :");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            {
+                enqueue();
+                break;
+            }
+            case 2:
+            {
+                dequeue();
+                break;
+            }
+            case 3:
+            {
+                exit (0);
+            }
+        }
+    }    
+    
+}
+void enqueue()
+{
+    int n,i;
+    printf("Enter the total number of datas to be enqueued: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        printf("Enter the data :");
+        scanf("%d",&temp->data);
+        temp->next=NULL;
+        if(front==NULL)
+        {
+            front=temp;
+            rear=temp;
+        }
+        else
+        {
+            rear->next=temp;
+            rear=temp;
+        }
+    }
+}
+void dequeue()
+{
+    // temp=front;
+    int n,i;
+    printf("Enter the total number of datas to be dequeued: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        if(front==NULL)
+        {
+            printf("Queue is empty");
+            return;
+        }
+        else
+        {
+            temp=front;
+            printf("%d",temp->data);
+            front=front->next;
+            temp->next=NULL;
+            free(temp);
+        }
+    }
+}
+
+// output
+--ENQUEUE AND DEQUEUE--
+Enter
+        1.Enqueue
+        2.Dequeue
+        3.Exit
+Enter the option :1
+Enter the total number of datas to be enqueued: 3
+Enter the data :2
+Enter the data :3
+Enter the data :4
+
+
+Enter
+        1.Enqueue
+        2.Dequeue
+        3.Exit
+Enter the option :2
+Enter the total number of datas to be dequeued: 1
+2
+Enter
+        1.Enqueue
+        2.Dequeue
+        3.Exit
+Enter the option :3
+
+
+...Program finished with exit code 0
+Press ENTER to exit console.
