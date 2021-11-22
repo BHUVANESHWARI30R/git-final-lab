@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+}*top,*temp;
+void push();
+void pop();
+void print();
+
+int main()
+{
+    int i,n;
+    printf("enter the number of nodes to be inserted:");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        push();
+    }
+    print();
+    pop();
+    print();
+}
+void push()
+{
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("enter the data");
+    scanf("%d",&temp->data);
+    temp->next=NULL;
+    if(top==NULL)
+    {
+        top=temp;
+    }
+    else
+    {
+        temp->next=top;
+        top=temp;
+    }
+}
+void pop()
+{
+    temp=top;
+    if(top==NULL)
+    {
+       printf("stack is empty");
+    }
+    else
+    {
+        top=top->next;
+        free(temp);
+    }
+}
+void print()
+{
+   temp=top;
+   printf("\n");
+   while(temp!=NULL)
+   {
+        printf("%d",temp->data);
+        temp=temp->next;
+   }
+}
+
+
